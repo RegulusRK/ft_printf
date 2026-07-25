@@ -14,6 +14,11 @@ static int	print_conversion(char conversion, va_list *args)
 		n = ft_putchar('%');
 		return (n);
 	}
+	if (conversion == 's')
+	{
+		n = ft_putstr(va_arg(*args, char *));
+		return (n);
+	}
 	return (0);
 }
 
