@@ -2,35 +2,21 @@
 
 static int	print_number_conversion(char conversion, va_list *args)
 {
-	int	n;
-
 	if (conversion == 'd' || conversion == 'i')
-	{
-		n = ft_putnbr(va_arg(*args, int));
-		return (n);
-	}
+		return (ft_putnbr(va_arg(*args, int)));
+	if (conversion == 'u')
+		return (ft_putunsigned(va_arg(*args, unsigned int)));
 	return (0);
 }
 
 static int	print_text_conversion(char conversion, va_list *args)
 {
-	int	n;
-
 	if (conversion == 'c')
-	{
-		n = ft_putchar((char)va_arg(*args, int));
-		return (n);
-	}
+		return (ft_putchar((char)va_arg(*args, int)));
 	if (conversion == '%')
-	{
-		n = ft_putchar('%');
-		return (n);
-	}
+		return (ft_putchar('%'));
 	if (conversion == 's')
-	{
-		n = ft_putstr(va_arg(*args, char *));
-		return (n);
-	}
+		return (ft_putstr(va_arg(*args, char *)));
 	return (0);
 }
 
@@ -41,7 +27,8 @@ static int	print_conversion(char conversion, va_list *args)
 		conversion == '%')
 		return (print_text_conversion(conversion, args));
 	if (conversion == 'i' ||
-		conversion == 'd')
+		conversion == 'd' ||
+		conversion == 'u')
 		return (print_number_conversion(conversion, args));
 	return (0);
 }
@@ -49,8 +36,8 @@ static int	print_conversion(char conversion, va_list *args)
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int 	i;
-	int 	count;
+	int		i;
+	int		count;
 
 	va_start(args, format);
 	i = 0;
