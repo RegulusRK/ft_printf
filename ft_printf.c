@@ -1,6 +1,18 @@
 #include "ft_printf.h"
 
-static int	print_conversion(char conversion, va_list *args)
+static int	print_number_conversion(char conversion, va_list *args)
+{
+	int	n;
+
+	if (conversion == 'd' || conversion == 'i')
+	{
+		n = ft_putnbr(va_arg(*args, int));
+		return (n);
+	}
+	return (0);
+}
+
+static int	print_text_conversion(char conversion, va_list *args)
 {
 	int	n;
 
@@ -22,6 +34,18 @@ static int	print_conversion(char conversion, va_list *args)
 	return (0);
 }
 
+static int	print_conversion(char conversion, va_list *args)
+{
+	if (conversion == 'c' ||
+		conversion == 's' ||
+		conversion == '%')
+		return (print_text_conversion(conversion, args));
+	if (conversion == 'i' ||
+		conversion == 'd')
+		return (print_number_conversion(conversion, args));
+	return (0);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
@@ -38,10 +62,12 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
+			if (format[i] == '\0')
+				break ;
 			count += print_conversion(format[i], &args);
 		}
 		i++;
 	}
 	va_end(args);
 	return (count);
-} 
+}
