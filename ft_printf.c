@@ -6,6 +6,8 @@ static int	print_number_conversion(char conversion, va_list *args)
 		return (ft_putnbr(va_arg(*args, int)));
 	if (conversion == 'u')
 		return (ft_putunsigned(va_arg(*args, unsigned int)));
+	if (conversion == 'x' || conversion == 'X')
+		return (ft_puthex(va_arg(*args, unsigned int), conversion));
 	return (0);
 }
 
@@ -28,7 +30,9 @@ static int	print_conversion(char conversion, va_list *args)
 		return (print_text_conversion(conversion, args));
 	if (conversion == 'i' ||
 		conversion == 'd' ||
-		conversion == 'u')
+		conversion == 'u' ||
+		conversion == 'x' ||
+		conversion == 'X')
 		return (print_number_conversion(conversion, args));
 	return (0);
 }
