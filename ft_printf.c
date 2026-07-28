@@ -34,6 +34,8 @@ static int	print_conversion(char conversion, va_list *args)
 		conversion == 'x' ||
 		conversion == 'X')
 		return (print_number_conversion(conversion, args));
+	if (conversion == 'p')
+		return (ft_putptr(va_arg(*args, void *)));
 	return (0);
 }
 
