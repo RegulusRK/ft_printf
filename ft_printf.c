@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rafcrist <rafcrist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/28 14:02:32 by rafcrist          #+#    #+#             */
+/*   Updated: 2026/07/28 14:02:32 by rafcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static int	print_number_conversion(char conversion, va_list *args)
@@ -24,15 +36,15 @@ static int	print_text_conversion(char conversion, va_list *args)
 
 static int	print_conversion(char conversion, va_list *args)
 {
-	if (conversion == 'c' ||
-		conversion == 's' ||
-		conversion == '%')
+	if (conversion == 'c'
+		|| conversion == 's'
+		|| conversion == '%')
 		return (print_text_conversion(conversion, args));
-	if (conversion == 'i' ||
-		conversion == 'd' ||
-		conversion == 'u' ||
-		conversion == 'x' ||
-		conversion == 'X')
+	if (conversion == 'i'
+		|| conversion == 'd'
+		|| conversion == 'u'
+		|| conversion == 'x'
+		|| conversion == 'X')
 		return (print_number_conversion(conversion, args));
 	if (conversion == 'p')
 		return (ft_putptr(va_arg(*args, void *)));

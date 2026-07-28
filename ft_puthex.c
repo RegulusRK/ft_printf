@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rafcrist <rafcrist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/28 14:04:59 by rafcrist          #+#    #+#             */
+/*   Updated: 2026/07/28 14:04:59 by rafcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_puthex(unsigned int n, char conversion)
 {
-	int     count;
-	char    *base;
-	char    *base_m;
+	int		count;
+	char	*base;
+	char	*base_m;
 
 	count = 0;
 	base = "0123456789abcdef";
